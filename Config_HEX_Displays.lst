@@ -1,0 +1,52 @@
+
+as12, an absolute assembler for Motorola MCU's, version 1.2h
+
+                        ; Config_HEX_Displays.asm
+                        ; David Haley, Professor, 18 Mar 2013
+                        ;--------------------------------------
+                        ; Config_HEX_Displays                 -
+                        ;    Purpose:                         -
+                        ;       - To configure the ports the  -
+                        ;         Dragon12-Plus HCS12 Trainer -
+                        ;         Rev F. Board Ports to use   -
+                        ;         the four HEX displays       -
+                        ;         on Port B and P             -
+                        ;                                     -
+                        ;   Precondition:                     -
+                        ;       - A library file that defines -
+                        ;         the register mapping must   -
+                        ;         be included in the source   -
+                        ;         code using this subroutine  -
+                        ;         because this subroutine     -
+                        ;         is dependent upon the       -
+                        ;         register mapping            -
+                        ;                                     -
+                        ;    Use:                             -
+                        ; - Place Config_HEX_Displays.asm in  -
+                        ;         your Source Code folder     -
+                        ;                                     -
+                        ;       - insert the following after  -
+                        ;         your last line of source    -
+                        ;         and before "end"            -
+                        ;                                     -
+                        ;    #include Config_HEX_Displays.asm -
+                        ;                                     -
+                        ;     Use:                            -
+                        ;       - jsr Config_HEX_Displays     -
+                        ;                                     -
+                        ;    Postcondition:                   -
+                        ;        - A is destroyed             -
+                        ;--------------------------------------
+0000                    Config_HEX_Displays
+0000 86 ff                      ldaa    #$FF    ; port configuration value
+Config_HEX_Displays.asm:39: Error - Symbol DDRB is undefined.
+0002 5a 00                      staa    DDRB    ; Make PORTB output - for Hex Displays' values
+Config_HEX_Displays.asm:40: Error - Symbol DDRP is undefined.
+0004 5a 00                      staa    DDRP    ; Make PTP as output - to select correct Hex Display
+0006 3d                         rts
+                        ;- --------------------------------
+                        ;     End Config_HEX_Displays     -
+                        ;----------------------------------
+
+Executed: Wed Mar 15 20:05:53 2023
+Total errors: 2, Total warnings: 0

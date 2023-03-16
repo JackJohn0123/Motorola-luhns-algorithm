@@ -1,0 +1,42 @@
+
+as12, an absolute assembler for Motorola MCU's, version 1.2h
+
+                        ; Validate_CC.asm
+                        ; Date:                 August 12 2022
+                        ;
+                        ; Purpose:              determine if the sum of a credit card number makes it a valid credit card
+                        ;
+                        ; Preconditions:        accumulator a contains even sum
+                        ;                       accumulator b contains odd sum
+                        ;
+                        ; Postcondition:        accumulator a contains the indicator.
+                        ;
+                        ;
+                        
+                        
+                        
+0000                    Validate
+0000 18 06                              aba                ; add accumulator a and b
+                                        
+0002 b7 01                              tfr        a,b     ; transfer register to register (B = A)
+0004 87                                 clra            ; clear accumlater A
+                                
+0005 ce 00 0a                           ldx     #10        ; Load 10 to register X
+                                
+0008 18 10                              idiv            ; divided B by 10
+                                
+000a 8c 00 00                           cpd        #0      ; compare the reminder to 0
+000d 27 03                              beq        true    ; branch to equal if true
+000f 86 00                              ldaa        #0             ; load accumlator A with 0 if false
+                                
+0011                    return
+0011 3d                                 rts                ; Valid or Invalid Indicator returned
+                        
+                                        end
+                                
+0012 86 01              true                ldaa        #1            ; load accumlater A to 1 if true
+0014 20 fb                              bra            return  ; branch out
+
+Executed: Wed Mar 15 20:06:00 2023
+Total cycles: 33, Total bytes: 22
+Total errors: 0, Total warnings: 0

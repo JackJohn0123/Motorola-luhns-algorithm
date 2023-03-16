@@ -1,0 +1,63 @@
+
+as12, an absolute assembler for Motorola MCU's, version 1.2h
+
+                        ; Add_Odd.asm
+                        ; Date:                 August 12 2022
+                        ;
+                        ; Purpose:              after multiplying each odd number by 2, get the sum of even numbers in a credit card
+                        ;
+                        ; Preconditions:        register y is loaded with pointer to credit card
+                        ;                       accumulator b is loaded with the # of digits in the card
+                        ;
+                        ; Postcondition:        register b contains the sum of the odds numbers.
+                        
+                        
+                        
+                        
+                        
+0000                    Add_Odd ; Add_Odd.asm
+0000 34                             pshx                   ;save x
+0001 a6 40              LoopAddOdd  ldaa    0,y       ; Get the value of the accumulator
+0003 ab 71                          adda    2,y+               ; Add the value of the accumulator to the value of the accumulator
+0005 18 07                          daa                    ; Add the carry bit to the value of the accumulator
+0007 81 10                          cmpa    #$10          ; if the value is greater than $10 then subtract $10 from the value
+0009 37                             pshb                      ; save the value of the accumulator
+000a 2c 11                          bge     AddAccross       ; if the value is greater than $10 then go to AddAccross
+000c 33                 Cont        pulb                   ; get the value of the accumulator
+000d 53                             decb                    ; decrement the value of the accumulator
+000e 53                             decb                   ; decrement the value of the accumulator
+000f b7 81                          exg     a,b           ; exchange the value of the accumulator with the value of the accumulator
+0011 1a e5                          abx                   ; add the value of the accumulator to the value of the accumulator
+0013 b7 81                          exg     a,b          ; exchange the value of the accumulator with the value of the accumulator
+0015 c1 00                          cmpb    #0           ; if the value of the accumulator is 0 then go to AddAccross
+0017 2e e8                          bgt     LoopAddOdd    ; if the value of the accumulator is greater than 0 then go to LoopAddOdd
+                        
+0019 b7 50                          tfr     x,a        ; exchange the value of the accumulator with the value of the accumulator
+001b 30                             pulx                ; get the value of the accumulator
+                        
+001c 3d                             rts               ; return to the caller
+                        
+001d                    AddAccross
+001d 36                             psha          ; save the value of the accumulator
+001e 48                             lsla         ; left shift the value of the accumulator
+001f 48                             lsla        ; left shift the value of the accumulator
+0020 48                             lsla       ; left shift the value of the accumulator
+0021 48                             lsla     ; left shift the value of the accumulator
+0022 44                             lsra       ; right shift the value of the accumulator
+0023 44                             lsra     ; right shift the value of the accumulator
+0024 44                             lsra  ; right shift the value of the accumulator
+0025 44                             lsra    ; right shift the value of the accumulator
+0026 b7 01                          tfr     a,b       ; exchange the value of the accumulator with the value of the accumulator
+0028 32                             pula         ; get the value of the accumulator
+0029 44                             lsra         ; right shift the value of the accumulator
+002a 44                             lsra       ; right shift the value of the accumulator
+002b 44                             lsra    ; right shift the value of the accumulator
+002c 44                             lsra ; right shift the value of the accumulator
+002d 18 06                          aba         ; add the value of the accumulator to the value of the accumulator
+002f 20 db                          bra     Cont    ; go to Cont
+                        
+                                    end  ;end
+
+Executed: Wed Mar 15 20:05:26 2023
+Total cycles: 57, Total bytes: 49
+Total errors: 0, Total warnings: 0

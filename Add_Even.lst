@@ -1,0 +1,40 @@
+
+as12, an absolute assembler for Motorola MCU's, version 1.2h
+
+                        ; Add_Even.asm
+                        ; Date:                 August 12 2022
+                        ;
+                        ; Purpose:              get the sum of even numbers in a credit card
+                        ;
+                        ; Preconditions:        register y is loaded with pointer to credit card
+                        ;                       accumulator b is loaded with the # of digits in the card
+                        ;
+                        ; Postcondition:        register b contains the sum of the even numbers.
+                        ;
+                        
+                        
+0000                    Add_Even
+0000 02                                 iny                        ; Increment index register Y
+0001 53                                 decb                        ; decrement memory location for B
+0002 34                                 pshx                        ; push x into the stack
+0003 a6 71              LoopAddEven     ldaa        2,y+                ; starts of the lop store the 2 digit into y and increment y
+0005 18 07                              daa                        ; adjust the sum into BCD
+0007 53                                 decb                        ; decrement memory location for b
+0008 53                                 decb                        ; decrement memory location for b
+0009 b7 81                              exg        a,b              ; exchange B=A
+000b 1a e5                              abx                        ; Translates to LEAX B,Y
+000d b7 81                              exg        a,b                ; Exchange B=A
+000f c1 00                              cmpb        #0                ; compare to B if equals to 0
+                                
+0011 2e f0                              bgt        LoopAddEven          ; branch to Loop add even if its greater
+                        
+0013 b7 50                              tfr        x,a                  ; transfer the register a to x
+0015 30                                 pulx                        ; pull x from the stack
+                                
+0016 3d                                 rts                     ; Sum of Even Digits returned
+                        
+                                        end
+
+Executed: Wed Mar 15 20:04:53 2023
+Total cycles: 26, Total bytes: 23
+Total errors: 0, Total warnings: 0
