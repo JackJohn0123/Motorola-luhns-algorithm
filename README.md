@@ -15,8 +15,9 @@ INSTRUCTIONS TO RUN THE PROGRAM
 
 The program output should be similar to this!
 
-[Screenshot 2023-03-15 195033](https://user-images.githubusercontent.com/113872188/225489103-978635f4-46da-458f-afe7-6c87cf4eb81b.png)
+<img src = https://user-images.githubusercontent.com/113872188/225489103-978635f4-46da-458f-afe7-6c87cf4eb81b.png>
 
-[Screenshot 2023-03-15 195103](https://user-images.githubusercontent.com/113872188/225489107-955dc964-56dc-4740-bb49-d80c6df3c58d.png)
+<img src = https://user-images.githubusercontent.com/113872188/225489107-955dc964-56dc-4740-bb49-d80c6df3c58d.png>
 
 
+5 representing the total valid credit card and 1 representing false credit cards
