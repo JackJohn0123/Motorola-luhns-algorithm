@@ -3,7 +3,7 @@ HCS12-luhns-algorithm
 
 Luhns algorithm is a checksum formula used to validate the identification number such as IMEI numbers and social insurance number.
 
-This Motorola HCS12 program uses the luhns algorithm to validate the credit number provided. Since it's written in assembly, th program is executed fast and efficiently
+This Motorola HCS12 program uses the luhns algorithm to validate the credit number provided.
 
 INSTRUCTIONS TO RUN THE PROGRAM
 
